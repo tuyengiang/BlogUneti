@@ -17,7 +17,6 @@
 </head>
 <body>	
 	<?php require_once("../inc/header.php");?>
-	<?php require_once("../inc/menu.php");?>
 	<div id="wapper">
 		<div id="lua-chon">
 			<div class="lua-chon-content">
@@ -56,7 +55,6 @@
 
 				 ?>
 				 <div class="list-title"><i class="fa fa-user"></i> Thông tin tài khoản : <font color="yellow"><?php echo $row["username"]; ?></font>
-					<div class="back"><a href="wp-admin.php"><i class="fa fa-angle-double-left"></i> Về quản lý</a></div><!--back-->
 				 </div><!--list-title-->
 
 				 <div class="blog-info">

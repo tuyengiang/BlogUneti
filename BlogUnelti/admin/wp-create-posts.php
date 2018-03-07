@@ -10,28 +10,30 @@
 	}
 	$user_id=$user["id"];
 	if($_SERVER["REQUEST_METHOD"]=="POST"){
+		$hienthi=$_POST["hienthi"];
 		$title=$_POST["title"];
 		$content=$_POST["content"];
 		$excerpt=$_POST["excerpt"];
 		$images=$_FILES["images"]["name"];
 		$cat_id=$_POST["cat_id"];
 
-		$sql="INSERT INTO post (title,content,excerpt,images,cat_id,user_id)
+		$sql="INSERT INTO $hienthi (title,content,excerpt,images,cat_id,user_id)
 			VALUES('{$title}','{$content}','{$excerpt}','{$images}','{$cat_id}','{$user_id}')";
 		$query=mysqli_query($conn,$sql);
 		if(!empty($images)){
 			
-			move_uploaded_file($_FILES["images"]["tmp_name"],"../images/".$_FILES["images"]["name"]);
+			move_uploaded_file($_FILES["images"]["tmp_name"],"/var/www/html/BlogUneti/BlogUnelti/images/".$_FILES["images"]["name"]);
 		}
 		if($query){
 			echo "<script language='javascript'>";
 			echo "alert('Thêm bài viết thành công!!!');";
 			echo "</script>";
-			
 		}else{
-			echo "<script language='javascript'>";
-			echo "alert('Thêm bài viết thất bại!!!');";
-			echo "</script>";
+			// echo "<script language='javascript'>";
+			// echo "alert('Thêm bài viết thất bại!!!');";
+			// echo "</script>";
+			// 
+			echo "That bai" .mysqli_error($conn);
 		}
 	}
 
@@ -72,14 +74,13 @@
 </head>
 <body>
 	<?php require_once("../inc/header.php") ?>
-	<?php require_once("../inc/menu.php") ?>
 	<div id="wapper">
 		
 		<?php require_once("../inc/luachon.php"); ?>
 		<div id="blog-main">
 			<div class="blog-main-left">
 				<div class="list-title">
-					<i class="fa fa-user"></i> Thông tin
+						<div class="title"><i class="fa fa-user"></i> Thông tin</div>
 				</div>
 				<div class="info-content">
 					<div class="info-img">
@@ -101,8 +102,8 @@
 			</div><!--blog-main-left-->
 
 			<div class="blog-main-right">
-				<div class="list-title"><i class="fa fa-plus"></i> Thêm bài viết mới
-				<div class="back"><a href="wp-admin.php"><i class="fa fa-angle-double-left"></i> Về quản lý</a></div><!--back-->
+				<div class="list-title">
+					<div class="title"><i class="fa fa-plus"></i> Thêm bài viết mới</div>
 				</div>	
 
 				<form method="post" class="form-plus" enctype="multipart/form-data">
@@ -134,6 +135,16 @@
 								<option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
 							<?php endwhile; ?>
 						</select>
+					</label>
+					<label>
+						<h4>Hiển thị</h4>
+						<select name="hienthi">
+							<option> --- Hiển thị ---</option>
+							<option value="post">Bài viết mới</option>
+							<option value="post_hot">Bài viết hot</option>
+
+						</select>
+
 					</label>
 					<br><br>
 					<center><button type="submit">Thêm bài viết</button></center>

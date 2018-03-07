@@ -13,18 +13,38 @@
 	<link rel="stylesheet" type="text/css" href="../js/slick/slick-1.8.0/slick/slick-theme.css">
 	<script src="../js/jquery.js"></script>
 	<script src="../js/slick/slick-1.8.0/slick/slick.min.js"></script>
+	<script src="../js/tinymce1/tinymce/js/tinymce/tinymce.min.js"></script>
+
 	<script src="j../s/jmain.js"></script>
+	<script>
+		tinymce.init({
+		  selector: 'textarea',
+		  elements : "textarea_full",
+		  height: 300,
+		  theme: 'modern',
+		  plugins: 'image code',
+		  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat | image | code',
+		  image_advtab: true,
+		  templates: [
+		    { title: 'Test template 1', content: 'Test 1' },
+		    { title: 'Test template 2', content: 'Test 2' }
+		  ],
+		  content_css: [
+		    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+		    '//www.tinymce.com/css/codepen.min.css'
+		  ]
+	 	});
+	</script>
 </head>
 <body>
 	<?php require_once("../inc/header.php") ?>
-	<?php require_once("../inc/menu.php") ?>
 	<div id="wapper">
 		
 		<?php require_once("../inc/luachon.php"); ?>
 		<div id="blog-main">
 			<div class="blog-main-left">
 				<div class="list-title">
-					<i class="fa fa-user"></i> Thông tin
+					<div class="title"><i class="fa fa-user"></i> Thông tin</div>
 				</div>
 				<div class="info-content">
 					<div class="info-img">
@@ -89,8 +109,8 @@
 			}
 
 			?>
-				<div class="list-title"><i class="fa fa-edit"></i> Sửa bài viết 
-					<div class="back"><a href="wp-admin.php"><i class="fa fa-angle-double-left"></i> Về quản lý</a></div><!--back-->
+				<div class="list-title">
+					<div class="title"><i class="fa fa-edit"></i> Sửa bài viết </div>
 				</div>	
 
 				<h4><?php echo $row["title"]; ?></h4>
@@ -102,11 +122,11 @@
 					</label>
 					<label>
 						<h4>Nội dung miêu tả</h4>
-						<textarea name="excerpt"><?php echo $row['excerpt']; ?></textarea>
+						<textarea name="excerpt" id="textarea_full"><?php echo $row['excerpt']; ?></textarea>
 					</label>
 					<label>
 						<h4>Nội dung bài</h4>
-						<textarea name="content"><?php echo $row['content']; ?></textarea>
+						<textarea name="content" id="textarea_full"><?php echo $row['content']; ?></textarea>
 					</label>
 					<label>
 						<h4>Ảnh đại diện</h4>
@@ -126,7 +146,7 @@
 						</select>
 					</label>
 					<br><br>
-					<center><button type="submit">Thêm bài viết</button></center>
+					<center><button type="submit">Sửa bài viết</button></center>
 					<br>
 
 				</form>

@@ -1,0 +1,101 @@
+*{
+	margin:0;padding:0;font-family:roboto,arial;
+}
+
+.tieu-de{
+	width:100%;
+	height:50px;
+}
+.tieu-de-trai,.tieu-de-phai{
+	width:39%;
+	float:left;
+	height:25px;
+	border-bottom:1px solid black;
+}
+.tieu-de-giua{
+	width:20%;
+	height:50px;
+	line-height:50px;
+	float:left;
+	margin:0 10px 0 10px;
+	text-align:center;
+	font-weight:bold;
+	font-size:30px;
+	color:#333;
+}
+/**main-content**/
+.main-content{
+	width:31.5%;
+	height:440px;
+	float:left;
+	margin:10px 10px 10px 10px;
+}
+.main-content-img{
+	width:100%;
+	height:200px;
+}
+.main-content-img:hover{
+	opacity:0.9;
+}
+.main-content-img img{
+	width:100%;
+	height:200px;
+}
+.main-content-category{
+	font-size:18px;
+	width:100%;
+	height:30px;
+	line-height:40px;
+	margin-top:10px;
+}
+.main-content-category a{
+	color:#2ABB67;
+}
+.main-content-title{
+	width:100%;
+	margin-top:10px;
+	font-weight:bold;
+	color:#191919;
+	height:60px;
+}
+.main-content-title a{
+	color:#333;
+	font-size:18px;
+}
+.main-content-title a:hover{
+	color:gray;
+}
+.main-content-date{
+	width:100%;
+	height:20px;
+	line-height:20px;
+	margin-top:5px;
+	color:gray;
+}
+.main-content-excerpt{
+	width:100%;
+	height:50px;
+	margin-top:10px;
+	color:#333;
+}
+
+/**info**/
+.single-info{
+	color:gray;
+	font-style:normal;
+	height:50px;
+	line-height:50px;
+	font-style:italic;
+
+}
+.single-info i{
+	width:3%;
+	text-align:center;
+}
+.single-title{
+	color:#333;
+	font-size:25px;
+	height:50px;
+	line-height:50px;
+	font-weight:bold;
+}

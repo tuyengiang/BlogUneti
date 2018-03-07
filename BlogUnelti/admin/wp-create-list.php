@@ -34,7 +34,6 @@
 </head>
 <body>	
 	<?php require_once("../inc/header.php");?>
-	<?php require_once("../inc/menu.php");?>
 	<div id="wapper">
 		<div id="lua-chon">
 			<div class="lua-chon-content">
@@ -75,8 +74,7 @@
 						}
 						$user=$row["id"];
 					 ?>
-					<i class="fa fa-bars"></i> Bài viết của <font color="yellow" ><?php echo $row["hoten"]; ?></font>
-					<div class="back"><a href="wp-admin.php"><i class="fa fa-angle-double-left"></i> Về quản lý</a></div><!--back-->
+					<div class="title"><i class="fa fa-bars"></i> Bài viết của <font color="yellow" ><?php echo $row["hoten"]; ?></font></div>
 				</div><!--list-title-->
 				<table>
 					<thead>
@@ -97,14 +95,15 @@
 				 		?>
 						<tr>
 							<td style="text-align:center;"><?php echo $row["id"] ;?></td>
-							<td><img src="../images/<?php echo $row["images"] ;?>" ></td>
+							<td style="width:20%;"><img src="../images/<?php echo $row["images"] ;?>" ></td>
 							<td><?php echo $row["title"] ;?></td>
 							<td><?php echo $row["excerpt"] ;?></td>
 							<td><?php echo $row["ctitle"] ;?></td>
 							<td><?php echo $row["hoten"] ;?></td>
 							<td>
-								<a href="wp-edit-post.php?id=<?php echo $row['id']; ?>">Sửa</a>
-								<form method="post">
+								<a href="wp-edit-post.php?id=<?php echo $row['id']; ?>"> <button type="submit">Sửa</button></a>
+
+								<form method="post" style="margin-top:10px;">
 									<input type="hidden" name="delete" value="<?php echo $row['id']; ?>">
 									<button type="submit" onclick="return confirm('Bạn có muốn xóa không ?');">Xóa</button>
 								</form>

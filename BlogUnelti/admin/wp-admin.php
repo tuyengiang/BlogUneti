@@ -17,7 +17,6 @@
 </head>
 <body>	
 	<?php require_once("../inc/header.php");?>
-	<?php require_once("../inc/menu.php");?>
 	<div id="wapper">
 		<div id="lua-chon">
 			<div class="lua-chon-content">
@@ -48,7 +47,7 @@
 		<div id="blog-main">
 			<div class="blog-main-left">
 				<div class="list-title">
-					<i class="fa fa-user"></i> Thông tin
+					<div class="title"> <i class="fa fa-user"></i>  Thông tin </div>
 				</div>
 				<div class="info-content">
 
@@ -71,7 +70,7 @@
 			</div>
 			<div class="blog-main-right">
 				<div class="list-title">
-					<i class="fa fa-bars"></i> Bài viết của <font color="yellow" ><?php echo $row["hoten"]; ?></font>
+					<div class="title"><i class="fa fa-bars"></i> Bài viết của <font color="yellow" ><?php echo $row["hoten"]; ?></font></div>
 				</div><!--list-title-->
 
 				<?php 
@@ -120,7 +119,7 @@
 		<div style="clear:right"></div>
 		<div id="gop-y">
 			<div class="list-title"> <i class="fa fa-envelope"></i> Hòm thư góp ý của bạn</div>
-			<form class="form-login">
+			<form class="form-plus">
 				<label>
 					<h4>Email</h4>
 					<input type="email" placeholder="Nhập email của bạn">

@@ -13,6 +13,7 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="css/awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="js/slick/slick-1.8.0/slick/slick.css">
 	<link rel="stylesheet" type="text/css" href="js/slick/slick-1.8.0/slick/slick-theme.css">
 	<script src="js/jquery.js"></script>
@@ -20,34 +21,41 @@
 	<script src="js/jmain.js"></script>
 </head>
 <body>
-	<div id="header"><div class="header-content">
-		<div class="header-info">
-			<div class="tab">
+	<div id="header">
+		<div class="header-top">
+			<div style="height:30px;margin-top:0" class="header-content">
 				<ul>
-					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-					<li style="background:#4099FF;"><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li style="background:#D34836;"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-					<li style="background:#8E44AD;"><a href="#"><i class="fa fa-retweet"></i></a></li>
+					<li><a href="#"><i class="fa fa-envelope"></i> nguyentuyengiangbn@gmail.com</a></li>
+					
+					<li style="float:right;width:12%;">
+						
+							<?php
+									 if(isset($_SESSION["user"])){
+											$id=$_SESSION["user"];
+											$sql="SELECT * FROM taikhoan WHERE username='{$id}'";
+											$query=mysqli_query($conn,$sql);
+											$row=mysqli_fetch_array($query,MYSQLI_ASSOC);
+											echo " <center><img src='images/".$row['images']."'><a href='admin/wp-admin.php'>  ".$row["hoten"]."</a></center><br>";
+									}else{
+										echo "";
+									}
+
+							?>
+					</li>
 				</ul>
-			</div>
-		</div><!--header-info-->
-		<div class="logo">
-			<a href="#" title="Blog Uneti | Đại học kinh tế kỹ thuật công nghiệp"><img src="images/logo.png"></a>
-		</div><!--logo-->
-		<div class="header-search">
-			<form method="post" class="form-search">
-				<input type="search" name="search" placeholder="Bạn tìm gì nào?">
-				<button type="submit" class="btn-search"><i class="fa fa-search"></i></button>
-			</form>
-		</div><!--header-search-->
-	</div>
-	</div><!--header-->
-	
-	<div id="menu">
+			</div><!--header-contetnt-->
+			
+		</div><!--header-top-->
+		<div class="header-content">
+		
+			<div class="logo">
+				<a href="index.php" title="Blog Uneti | Đại học kinh tế kỹ thuật công nghiệp"><img src="images/logo.png"></a>
+			</div><!--logo-->
+			<div id="menu">
 		<div class="menu-nav">
 			<ul>
-				<li style="width:5%;"><a href="index.php"><i class="fa fa-home"></i></a></li>
-				<li><a href="#">Lập trình <i class="fa fa-caret-down"></i> </a>
+				<li><a href="index.php">Trang chủ</a></li>
+				<li><a href="#">Lập trình <i class="fa fa-angle-down"></i> </a>
 					<ul class="sub-menu">
 						<?php 
 							$sql="SELECT * FROM category";
@@ -63,27 +71,22 @@
 				<li><a href="#">Tài liệu</a></li>
 				<li><a href="#">Tin tức</a></li>
 				<li><a href="#">Liên hệ</a></li>
-				<li style="float:right;width:15%;">
-						
-						<?php
-								 if(isset($_SESSION["user"])){
-										$id=$_SESSION["user"];
-										$sql="SELECT * FROM taikhoan WHERE username='{$id}'";
-										$query=mysqli_query($conn,$sql);
-										$row=mysqli_fetch_array($query,MYSQLI_ASSOC);
-										echo " <center><img src='images/".$row['images']."'><a href='admin/wp-admin.php'>  ".$row["hoten"]."</a></center><br>";
-								}else{
-									echo "";
-								}
+				<li><a href="#">Thành viên <i class="fa fa-angle-down"></i></a>
+					<ul class="sub-menu">
+						<li><a href="dang-nhap.php">Đăng nhập</a></li>
+						<li><a href="yeu-cau.php">Cấp tài khoản</a></li>
+					</ul>
+				</li>
+				<li style="float:right;width:3%"><i class="fa fa-search"></i></li>
 
-						?>
-					</li>
 			</ul>
 		</div><!--menu-nav-->
 	</div><!--menu-->
+		</div><!--header-content-->
+	</div><!--header-->
 	
 	<div id="wapper">
-		<div id="blog-main">
+		<div id="blog-main" style="margin-top:110px;">
 				<?php 
 					$id1=$_GET["id"];
 					$sql1="SELECT post.*,category.id as cid,category.title ctitle FROM post,category WHERE post.cat_id=category.id AND post.id='{$id1}'";
@@ -92,33 +95,47 @@
 	 			?>
 				
 				<div class="single-content">
-					<div class="info" style="font-size:18px;">
-							<font color="#ff3333" ><b>Home</b> <i class="fa fa-angle-right"></i>
+					<div class="single-info" style="font-size:15px;">
+							Trang chủ <i class="fa fa-angle-right"></i>
 							<?php 
 								echo $row1["ctitle"];
 							?>
-							</font>
+							<i class="fa fa-angle-right"></i>
+							<?php 
+								echo $row1["title"];
+							 ?>
 					
-					</div><!--info-->
-					<h1><?php echo $row1["title"]; ?></h1>
+					</div><!--single-info-->
+					<div class="main-content-category">
+						<a href="category-list.php?id=<?php echo $row1["cid"]; ?>" title="<?php echo $row['ctitle']; ?>"><?php echo $row1["ctitle"]; ?></a>
+					</div><!--main-content-category-->
+					<div class="single-title"><?php echo $row1["title"]; ?></div>
+
 					<h5 style="margin:10px 0 10px 0;"><i class="fa fa-clock-o"></i> <?php 
 						$time_ago=strtotime($row1["date_time"]);
 						echo time_stamp($time_ago);
 					?></h5>
-					<div class="tab" style="width:40%;float:left">
-						<ul>
-							<li style="margin-left:0"><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li style="background:#191919;"><a href="#"><i class="fa fa-envelope"></i></a></li>
-						</ul>
-					</div>
-					<div style="clear:left;"></div>
-					<h1 style="margin-top:10px;border:1px dashed lightgray;"></h1>
-					<p style="margin:20px 0 10px 0; font-size:18px;font-family:'Time New Roman'"><?php echo $row1["content"]; ?></p>
+
+					<div class="single-content-left">
+						<p style="margin:0 0 10px 0; font-size:18px;font-family:'Time New Roman'"><?php echo $row1["content"]; ?></p>
+					</div><!--single-content-left-->
+
 					<?php endwhile; ?>
+
+					<div class="single-content-right">
+						<div class="list-title">
+							<div class="title">Quảng cáo blog</div><!--title-->
+
+						</div>
+					</div><!--single-content-right-->
 				</div>
+				<div style="clear:left"></div>
+				<div style="clear:right"></div>
 		</div><!--blog-main-->
 		
-		<div class="list-title"><i class="fa fa-bars"></i> Bạn có biết ?</div>
+		<div class="list-title" style="margin-top:20px">
+			<div class="title"><i class="fa fa-bars"></i> Bạn có biết ?</div>
+		</div>
 		<div id="slider">
 			<div id="blog-slider">
 				<?php 
@@ -138,8 +155,7 @@
 				
 			</div><!--blog-slider-->
 	</div><!--slider-->
-		<div style="clear:left"></div>
-		<div style="clear:right"></div>
+		
 	</div><!--wapper-->
 
 	<?php require_once("inc/bottom.php"); ?>

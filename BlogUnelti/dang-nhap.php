@@ -25,16 +25,10 @@
 	}
 
  ?>
- <?php
- 		$id=$_GET["id"];
- 		$sql="SELECT * FROM category WHERE id='{$id}'";
- 		$query=mysqli_query($conn,$sql);
- 		$row=mysqli_fetch_array($query,MYSQLI_ASSOC);
- ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $row['title']; ?>| Đại học kinh tế kỹ thuật công nghiệp</title>
+	<title>Đăng nhập vào cplane | Đại học kinh tế kỹ thuật công nghiệp</title>
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="css/awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -110,61 +104,30 @@
 		</div><!--header-content-->
 	</div><!--header-->
 	
+
+	
 	<div id="wapper">
 		
-		<div id="blog-main" style="margin-top:120px;">
-			<?php 
-				$sql="SELECT * FROM category WHERE category.id='{$id}'";
-					$query=mysqli_query($conn,$sql);
-					while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)):
-			 ?>
+
+		<div id="blog-main" style="margin-top:110px">
 			<div class="tieu-de">
 				<div class="tieu-de-trai"></div>
-				<div class="tieu-de-giua"><?php echo $row["title"]; ?></div>
+				<div class="tieu-de-giua">Đăng nhập</div>				
 				<div class="tieu-de-phai"></div>
 			</div><!--tieu-de-->
-		<?php endwhile; ?>
-				<?php 
-					$page=empty($_GET["page"]) ? 1 :($_GET["page"]);
 
-              		$totalposts=get_total_post();
+			<form method="post" class="form-login">
+							<label>
+								<h4>Tên đăng nhập</h4>
+								<input type="text" name="username" placeholder="Nhập tên đăng nhập">
+							</label>
+							<label>
+								<h4>Mật khẩu</h4>
+								<input type="password" name="password" placeholder="Nhập mật khẩu">
+							</label><br>
+							<button type="submit">Đăng nhập</button>
+			</form>
 
-              		$startfrom= ($page -1) * $postpage; // bien chay 
-               // tran chay tu 1, nhung limit trong ysal lai chay tu page 0 den -1
-              		$totalpage=round($totalposts/$postpage); // lay ve tong so trang
-					$sql="SELECT post.*,category.id as cid,category.title as ctitle,taikhoan.id as tid,taikhoan.hoten FROM post,category,taikhoan WHERE post.cat_id=category.id AND post.user_id=taikhoan.id AND category.id='{$id}' ORDER BY post.id DESC LIMIT $startfrom,$postpage";
-					$query=mysqli_query($conn,$sql);
-					while($row=mysqli_fetch_array($query,MYSQLI_ASSOC)):
-				 ?>
-				<div class="main-content">
-					<div class="main-content-img">
-						<a href="single.php?id=<?php echo $row["id"];?>"><img src="images/<?php echo $row["images"];?>"></a>
-					</div><!--maincontent-img-->
-					<div class="main-content-category">
-						<a href="category-list.php?id=<?php echo $row["cid"]; ?>"><?php echo $row["ctitle"]; ?></a>
-					</div><!--main-content-category-->
-					<div class="main-content-title">
-							<a href="single.php?id=<?php echo $row["id"];?>"><?php echo $row["title"]; ?></a>
-					</div><!--main-content-title-->
-					<div class="main-content-date">
-						<i class="fa fa-clock-o"></i>
-						<?php 
-							$time=strtotime($row["date_time"]);
-							echo time_stamp($time);
-						 ?>
-					</div><!--main-content-date-->
-					<div class="main-content-excerpt">
-						<?php echo $row["excerpt"]; ?>
-					</div><!--main-content-excerpt-->
-				</div><!--main-content-->
-			<?php endwhile; ?>
-
-			<?php if($totalpage > 0) : ?>
-				<div class="next">
-					<div class="back"><a href="xem-them.php">Xem Thêm <i class="fa fa-angle-double-right"></i></a></div><!--back-->
-				</div><!--next-->
-			<?php endif; ?>
-				
 		</div><!--blog-main-->
 		<div style="clear:left"></div>
 		<div style="clear:right"></div>
